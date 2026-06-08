@@ -1,0 +1,201 @@
+review_id,product_id,rating,review_text,date
+R0001,P007,3,Good quality but expensive,2024-01-01
+R0002,P011,5,Smooth purchase experience,2024-04-15
+R0003,P035,5,Affordable and durable,2024-04-06
+R0004,P011,4,Smooth purchase experience,2024-04-25
+R0005,P002,5,Great product!,2024-03-22
+R0006,P022,4,Excellent quality,2024-02-13
+R0007,P036,1,Wrong item received,2024-01-24
+R0008,P028,4,Smooth purchase experience,2024-06-16
+R0009,P004,4,Affordable and durable,2024-01-26
+R0010,P045,5,Good value for money,2024-05-21
+R0011,P020,3,Good quality but expensive,2024-03-01
+R0012,P010,5,Affordable and durable,2024-01-14
+R0013,P019,4,Affordable and durable,2024-06-18
+R0014,P007,3,"Product is okay, expected better quality",2024-01-07
+R0015,P031,4,Would recommend to friends,2024-01-30
+R0016,P032,5,Affordable and durable,2024-06-18
+R0017,P024,4,Affordable and durable,2024-04-07
+R0018,P017,4,Smooth purchase experience,2024-04-22
+R0019,P037,5,Good value for money,2024-01-16
+R0020,P043,4,Excellent quality,2024-03-29
+R0021,P036,1,Damaged on arrival,2024-01-16
+R0022,P037,2,Damaged on arrival,2024-03-01
+R0023,P046,5,Excellent quality,2024-01-09
+R0024,P049,4,"Fast delivery, very happy",2024-04-24
+R0025,P013,4,"Fast delivery, very happy",2024-02-02
+R0026,P013,5,Excellent quality,2024-06-09
+R0027,P047,5,Would recommend to friends,2024-01-18
+R0028,P018,5,Affordable and durable,2024-05-13
+R0029,P008,5,Great product!,2024-04-16
+R0030,P037,4,Excellent quality,2024-01-26
+R0031,P017,3,Good quality but expensive,2024-04-08
+R0032,P012,3,"Product is okay, expected better quality",2024-03-11
+R0033,P026,4,Affordable and durable,2024-03-25
+R0034,P018,3,"Average product, nothing special",2024-04-05
+R0035,P018,5,Would recommend to friends,2024-05-05
+R0036,P009,1,Poor packaging quality,2024-03-17
+R0037,P018,2,Not worth the price,2024-04-16
+R0038,P029,3,"Average product, nothing special",2024-02-24
+R0039,P049,2,Damaged on arrival,2024-05-12
+R0040,P005,1,Delivery was delayed,2024-03-20
+R0041,P050,3,"Product is okay, expected better quality",2024-05-14
+R0042,P013,1,Delivery was delayed,2024-02-21
+R0043,P030,1,Overpriced for what you get,2024-01-13
+R0044,P024,2,Overpriced for what you get,2024-04-28
+R0045,P016,4,Excellent quality,2024-04-05
+R0046,P031,4,Smooth purchase experience,2024-05-30
+R0047,P017,3,Good quality but expensive,2024-06-25
+R0048,P004,5,Great product!,2024-02-11
+R0049,P042,1,Overpriced for what you get,2024-02-27
+R0050,P033,3,Good quality but expensive,2024-01-06
+R0051,P009,2,Delivery was delayed,2024-06-14
+R0052,P017,4,Great product!,2024-06-04
+R0053,P028,2,Product broke within a week,2024-04-06
+R0054,P014,2,Not worth the price,2024-04-29
+R0055,P001,4,Affordable and durable,2024-05-10
+R0056,P020,2,Customer support is slow,2024-06-24
+R0057,P018,5,Excellent quality,2024-06-12
+R0058,P042,5,Would recommend to friends,2024-06-15
+R0059,P004,4,"Fast delivery, very happy",2024-06-02
+R0060,P047,4,Loved the discount deal,2024-01-07
+R0061,P027,3,Good quality but expensive,2024-04-13
+R0062,P022,4,Great product!,2024-02-26
+R0063,P033,3,"Product is okay, expected better quality",2024-03-17
+R0064,P007,2,Wrong item received,2024-04-30
+R0065,P044,4,Would recommend to friends,2024-03-26
+R0066,P015,3,Decent but shipping was slow,2024-03-19
+R0067,P017,5,Loved the discount deal,2024-05-29
+R0068,P004,5,Excellent quality,2024-06-11
+R0069,P013,3,"Average product, nothing special",2024-05-08
+R0070,P027,5,Affordable and durable,2024-01-14
+R0071,P013,1,Wrong item received,2024-03-28
+R0072,P021,4,Smooth purchase experience,2024-02-16
+R0073,P041,3,"Product is okay, expected better quality",2024-02-15
+R0074,P029,4,Great product!,2024-03-11
+R0075,P032,4,"Fast delivery, very happy",2024-01-23
+R0076,P026,5,Affordable and durable,2024-04-19
+R0077,P003,1,Damaged on arrival,2024-05-16
+R0078,P021,4,Loved the discount deal,2024-05-15
+R0079,P015,4,Great product!,2024-06-26
+R0080,P007,1,Product broke within a week,2024-04-08
+R0081,P005,4,Would recommend to friends,2024-01-12
+R0082,P047,5,Would recommend to friends,2024-05-13
+R0083,P044,3,Good quality but expensive,2024-02-04
+R0084,P049,5,Smooth purchase experience,2024-02-18
+R0085,P015,4,Affordable and durable,2024-02-27
+R0086,P047,3,Decent but shipping was slow,2024-01-06
+R0087,P024,3,Decent but shipping was slow,2024-06-15
+R0088,P050,3,"Product is okay, expected better quality",2024-05-16
+R0089,P042,3,"Average product, nothing special",2024-01-06
+R0090,P029,5,Excellent quality,2024-04-07
+R0091,P045,5,Would recommend to friends,2024-02-09
+R0092,P027,5,Great product!,2024-06-18
+R0093,P027,4,Would recommend to friends,2024-01-27
+R0094,P008,5,Excellent quality,2024-01-28
+R0095,P034,5,Good value for money,2024-02-21
+R0096,P011,5,Affordable and durable,2024-01-11
+R0097,P022,5,Good value for money,2024-03-01
+R0098,P037,4,Excellent quality,2024-06-20
+R0099,P047,4,Excellent quality,2024-01-26
+R0100,P019,2,Overpriced for what you get,2024-03-08
+R0101,P003,4,Excellent quality,2024-03-15
+R0102,P048,5,Loved the discount deal,2024-01-30
+R0103,P009,4,Great product!,2024-06-18
+R0104,P029,3,Good quality but expensive,2024-06-08
+R0105,P022,5,Excellent quality,2024-02-16
+R0106,P018,5,Affordable and durable,2024-04-08
+R0107,P042,3,"Product is okay, expected better quality",2024-02-12
+R0108,P007,4,Great product!,2024-04-16
+R0109,P012,2,Not worth the price,2024-06-05
+R0110,P044,4,Loved the discount deal,2024-02-03
+R0111,P027,4,Smooth purchase experience,2024-04-22
+R0112,P001,5,Would recommend to friends,2024-06-22
+R0113,P034,5,Good value for money,2024-05-13
+R0114,P043,3,"Average product, nothing special",2024-03-04
+R0115,P036,4,Affordable and durable,2024-06-05
+R0116,P032,5,"Fast delivery, very happy",2024-02-12
+R0117,P016,5,Smooth purchase experience,2024-03-25
+R0118,P036,1,Delivery was delayed,2024-06-13
+R0119,P030,4,Good value for money,2024-04-23
+R0120,P032,1,Not worth the price,2024-04-24
+R0121,P007,4,Smooth purchase experience,2024-04-13
+R0122,P039,4,Great product!,2024-06-07
+R0123,P022,3,Decent but shipping was slow,2024-04-03
+R0124,P022,2,Overpriced for what you get,2024-05-23
+R0125,P046,3,"Product is okay, expected better quality",2024-04-25
+R0126,P022,4,Good value for money,2024-03-31
+R0127,P045,2,Product broke within a week,2024-01-28
+R0128,P009,5,"Fast delivery, very happy",2024-04-14
+R0129,P008,4,Good value for money,2024-04-10
+R0130,P007,5,Good value for money,2024-04-16
+R0131,P030,5,Excellent quality,2024-06-17
+R0132,P001,3,Decent but shipping was slow,2024-05-15
+R0133,P033,3,"Product is okay, expected better quality",2024-02-15
+R0134,P007,3,Decent but shipping was slow,2024-04-09
+R0135,P027,3,Good quality but expensive,2024-06-04
+R0136,P026,2,Overpriced for what you get,2024-03-28
+R0137,P009,1,Not worth the price,2024-04-15
+R0138,P046,3,Good quality but expensive,2024-05-21
+R0139,P040,3,Decent but shipping was slow,2024-03-15
+R0140,P033,3,Decent but shipping was slow,2024-05-18
+R0141,P049,3,Good quality but expensive,2024-03-31
+R0142,P028,3,"Product is okay, expected better quality",2024-01-04
+R0143,P010,5,Great product!,2024-01-14
+R0144,P049,3,Decent but shipping was slow,2024-02-11
+R0145,P004,1,Product broke within a week,2024-06-25
+R0146,P023,3,Decent but shipping was slow,2024-04-25
+R0147,P016,5,Good value for money,2024-05-10
+R0148,P025,3,Good quality but expensive,2024-04-09
+R0149,P001,4,Loved the discount deal,2024-03-05
+R0150,P041,4,Smooth purchase experience,2024-06-14
+R0151,P019,4,Good value for money,2024-04-24
+R0152,P012,4,Excellent quality,2024-05-11
+R0153,P018,5,Great product!,2024-05-22
+R0154,P001,5,"Fast delivery, very happy",2024-03-25
+R0155,P010,4,"Fast delivery, very happy",2024-03-23
+R0156,P037,3,Good quality but expensive,2024-05-20
+R0157,P012,4,Loved the discount deal,2024-05-13
+R0158,P035,5,"Fast delivery, very happy",2024-05-17
+R0159,P014,4,Loved the discount deal,2024-06-18
+R0160,P014,5,Loved the discount deal,2024-06-07
+R0161,P043,4,Great product!,2024-03-29
+R0162,P044,4,Good value for money,2024-03-23
+R0163,P017,5,Excellent quality,2024-05-18
+R0164,P033,3,"Average product, nothing special",2024-05-10
+R0165,P042,5,Great product!,2024-02-19
+R0166,P011,4,Excellent quality,2024-05-17
+R0167,P043,4,Excellent quality,2024-06-10
+R0168,P014,3,"Product is okay, expected better quality",2024-05-17
+R0169,P048,1,Damaged on arrival,2024-06-24
+R0170,P003,5,Smooth purchase experience,2024-01-23
+R0171,P036,5,"Fast delivery, very happy",2024-01-19
+R0172,P027,3,Decent but shipping was slow,2024-04-09
+R0173,P021,5,Affordable and durable,2024-01-05
+R0174,P042,4,Excellent quality,2024-06-07
+R0175,P023,4,Great product!,2024-05-08
+R0176,P019,4,Would recommend to friends,2024-04-22
+R0177,P011,5,Great product!,2024-05-16
+R0178,P041,5,Affordable and durable,2024-02-06
+R0179,P036,4,Loved the discount deal,2024-05-22
+R0180,P037,4,Great product!,2024-06-01
+R0181,P014,5,Excellent quality,2024-03-29
+R0182,P012,4,"Fast delivery, very happy",2024-02-26
+R0183,P008,3,Good quality but expensive,2024-02-16
+R0184,P042,3,"Average product, nothing special",2024-05-20
+R0185,P007,5,Excellent quality,2024-02-20
+R0186,P023,3,"Product is okay, expected better quality",2024-02-02
+R0187,P019,3,Decent but shipping was slow,2024-06-07
+R0188,P032,5,Good value for money,2024-04-25
+R0189,P037,4,Would recommend to friends,2024-05-25
+R0190,P011,5,Loved the discount deal,2024-01-02
+R0191,P018,5,Good value for money,2024-04-02
+R0192,P030,5,Loved the discount deal,2024-04-24
+R0193,P036,5,Would recommend to friends,2024-01-28
+R0194,P009,5,Excellent quality,2024-05-17
+R0195,P002,4,Excellent quality,2024-05-09
+R0196,P003,3,"Product is okay, expected better quality",2024-05-21
+R0197,P024,4,Smooth purchase experience,2024-04-10
+R0198,P030,4,Would recommend to friends,2024-05-08
+R0199,P033,5,Affordable and durable,2024-01-03
+R0200,P029,3,Decent but shipping was slow,2024-02-10
