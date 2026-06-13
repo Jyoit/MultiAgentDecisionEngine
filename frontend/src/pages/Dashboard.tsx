@@ -79,20 +79,52 @@ export default function Dashboard() {
 
       {result && (
   <>
-    <KPICards
+    {/* <KPICards
       riskScore={result.risk_score}
       sentiment={result.customer_sentiment}
       rating={result.average_rating}
       strategyCount={result.strategies.length}
     />
+     */}
+    <KPICards
+  riskScore={result.risk_score}
+  sentiment={result.customer_sentiment}
+  rating={result.average_rating}
+  strategyCount={
+    result.strategies?.strategies?.length || 0
+  }
+/>
 
-    <StrategyCards
+    {/* <StrategyCards
       strategies={result.strategies}
-    />
+    /> */}
+    <StrategyCards
+  strategies={
+    result.strategies?.strategies || []
+  }
+/>
+    
+
 
     <MarketSummary
       summary={result.market_summary}
     />
+
+ <div className="mt-6 p-4 border rounded">
+      <h3 className="text-xl font-bold mb-2">
+        Agent Performance
+      </h3>
+
+      <p>Market Agent: {result.agent_times.market_agent}s</p>
+      <p>Risk Agent: {result.agent_times.risk_agent}s</p>
+      <p>Customer Agent: {result.agent_times.customer_agent}s</p>
+      <p>Strategy Agent: {result.agent_times.strategy_agent}s</p>
+      <p>Decision Agent: {result.agent_times.decision_agent}s</p>
+    </div>
+
+
+    
+
   </>
 )}
 

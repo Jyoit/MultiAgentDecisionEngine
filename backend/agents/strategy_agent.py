@@ -2,8 +2,11 @@
 from services.llm_service import invoke_llm
 from prompts.strategy_prompt import STRATEGY_PROMPT
 from utils.json_parser import parse_llm_json
+import time
+
 
 def strategy_agent(state):
+    start = time.time()
 
     prompt = f"""
     {STRATEGY_PROMPT}
@@ -25,9 +28,20 @@ def strategy_agent(state):
     response = invoke_llm(prompt)
     strategy_json = parse_llm_json(response)
 
+    elapsed = round(time.time() - start, 2)
 
+    
     return {
         # "strategy_options": response.content
         # "strategy_options": response
-        "strategy_options": strategy_json
+        # "strategy_options": strategy_json
+        "strategy_options": strategy_json,
+        "strategy_execution_time": elapsed,
+
+    "stream_log": state.get("stream_log", []) + [
+        "Strategy Agent started",
+        # f"Generated {len(strategy_json.get('strategy_options', []))} strategies",
+        f"Generated {len(strategy_json.get('strategies', []))} strategies",
+        "Strategy Agent finished"
+    ]
     }

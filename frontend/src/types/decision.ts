@@ -51,7 +51,20 @@ export interface DecisionResponse {
 
   average_rating: number;
 
+  // strategies: Strategy[];
+  strategies: {
   strategies: Strategy[];
+};
+
+agent_times: {
+    market_agent: number;
+    risk_agent: number;
+    customer_agent: number;
+    strategy_agent: number;
+    decision_agent: number;
+  };
+
+  workflow: string[];
 
   // final_decision: FinalDecision;
   final_decision: {

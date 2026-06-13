@@ -59,9 +59,12 @@
 
 from services.csv_service import load_reviews
 from services.sentiment_service import get_sentiment
+import time
 
 
 def customer_agent(state):
+
+    start = time.time()
 
     reviews_df = load_reviews()
 
@@ -94,11 +97,27 @@ def customer_agent(state):
     else:
         buying_behavior.append("Moderate customer confidence")
 
+    elapsed = round(time.time() - start, 2)
+
     return {
+        # "customer_data": {
+        #     "sentiment_score": round(avg_sentiment, 2),
+        #     "average_rating": round(avg_rating, 2),
+        #     "pain_points": pain_points,
+        #     "buying_behavior": buying_behavior
+        # }
         "customer_data": {
-            "sentiment_score": round(avg_sentiment, 2),
-            "average_rating": round(avg_rating, 2),
-            "pain_points": pain_points,
-            "buying_behavior": buying_behavior
-        }
+        "sentiment_score": round(avg_sentiment, 2),
+        "average_rating": round(avg_rating, 2),
+        "pain_points": pain_points,
+        "buying_behavior": buying_behavior,
+        "execution_time": elapsed
+    },
+
+    "stream_log": state.get("stream_log", []) + [
+        "Customer Agent started",
+        f"Average Rating: {round(avg_rating,2)}",
+        f"Sentiment Score: {round(avg_sentiment,2)}",
+        "Customer Agent finished"
+    ]
     }

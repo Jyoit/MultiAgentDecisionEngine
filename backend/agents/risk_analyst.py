@@ -1,8 +1,10 @@
 from services.csv_service import load_sales_data
 from services.csv_service import load_products
-
+import time
 
 def risk_analyst(state):
+
+    start = time.time()
 
     sales_df = load_sales_data()
 
@@ -37,10 +39,24 @@ def risk_analyst(state):
         "Track competitor pricing"
     ]
 
+    elapsed = round(time.time() - start, 2)
+
     return {
+        # "risk_data": {
+        #     "risk_score": risk_score,
+        #     "risk_factors": risk_factors,
+        #     "mitigation_steps": mitigation_steps
+        # }
         "risk_data": {
-            "risk_score": risk_score,
-            "risk_factors": risk_factors,
-            "mitigation_steps": mitigation_steps
-        }
+        "risk_score": risk_score,
+        "risk_factors": risk_factors,
+        "mitigation_steps": mitigation_steps,
+        "execution_time": elapsed
+    },
+
+    "stream_log": state.get("stream_log", []) + [
+        "Risk Analyst started",
+        f"Risk Score calculated: {risk_score}",
+        "Risk Analyst finished"
+    ]
     }

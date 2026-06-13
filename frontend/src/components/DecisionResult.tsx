@@ -58,7 +58,22 @@ export default function DecisionResult({
 
   return (
     <div className="mt-6 bg-white p-6 rounded-xl shadow">
+<details className="mt-6 bg-gray-50 rounded-xl p-4">
+  <summary className="cursor-pointer font-semibold text-lg">
+    View Multi-Agent Workflow
+  </summary>
 
+  <div className="mt-4 space-y-2">
+    {data.workflow?.map((step, index) => (
+      <div
+        key={index}
+        className="bg-white p-3 rounded border"
+      >
+        {step}
+      </div>
+    ))}
+  </div>
+</details>
       <h2 className="text-2xl font-bold mb-4">
         Final Verdict
       </h2>
