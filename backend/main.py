@@ -168,8 +168,6 @@ def run_decision(request: DecisionRequest):
 
     print(result)
 
-
-
     return clean_response
 
 
