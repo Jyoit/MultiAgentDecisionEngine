@@ -10,3 +10,4 @@ class Settings:
     TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 settings = Settings()
+
