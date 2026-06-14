@@ -160,8 +160,8 @@ def run_decision(request: DecisionRequest):
             # result["strategy_options"]["strategies"],
             # result["strategy_options"],
             # result["strategy_options"]["strategy_options"],
-            # result["strategy_options"].get("strategies", []),
-            result["strategy_options"].get("strategy_options", []),            
+            result["strategy_options"].get("strategies", []),
+            # result["strategy_options"].get("strategy_options", []),            
             
 
         "sources":

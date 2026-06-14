@@ -6,6 +6,8 @@ import time
 
 def market_analyst(state):
 
+    state["retry_count"] = state.get("retry_count", 0) + 1
+
     start = time.time()
 
     query = state["query"]

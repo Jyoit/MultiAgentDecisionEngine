@@ -64,6 +64,8 @@ class AgentState(TypedDict):
     # Control
     risk_loop_count: int
 
+    retry_count: int
+
     stream_log: List[str]
 
     error: Optional[str]

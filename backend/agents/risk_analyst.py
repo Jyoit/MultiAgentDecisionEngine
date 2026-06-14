@@ -54,6 +54,8 @@ def risk_analyst(state):
         "execution_time": elapsed
     },
 
+    "debug_risk_score": risk_score,
+
     "stream_log": state.get("stream_log", []) + [
         "Risk Analyst started",
         f"Risk Score calculated: {risk_score}",

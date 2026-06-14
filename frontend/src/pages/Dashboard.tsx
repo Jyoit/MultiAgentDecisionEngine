@@ -22,6 +22,9 @@ import type {
   DecisionResponse,
 } from "../types/decision";
 
+import WorkflowGraph
+from "../components/WorkflowGraph";
+
 export default function Dashboard() {
 
   const [loading, setLoading] =
@@ -35,6 +38,22 @@ export default function Dashboard() {
 
   const [agentEvents, setAgentEvents] =
   useState<AgentEvent[]>([]);
+
+  const completedAgents =
+  agentEvents
+    .filter(
+      (e) => e.status === "done"
+    )
+    .map(
+      (e) => e.agent
+    );
+
+const currentAgent =
+  [...agentEvents]
+    .reverse()
+    .find(
+      (e) => e.status === "running"
+    )?.agent;
 
   // const runDecision =
   //   async (query: string) => {
@@ -186,7 +205,17 @@ export default function Dashboard() {
         onSubmit={runDecision}
       />
 
-      <div className="mt-6">
+      {/* <div className="mt-6">
+  <AgentTrace
+    events={agentEvents}
+  />
+</div> */}
+<WorkflowGraph
+  currentAgent={currentAgent}
+  completedAgents={completedAgents}
+/>
+
+<div className="mt-6">
   <AgentTrace
     events={agentEvents}
   />
