@@ -28,8 +28,17 @@ def strategy_agent(state):
     response = invoke_llm(prompt)
     strategy_json = parse_llm_json(response)
 
+    print("STRATEGY JSON KEYS:")
+    print(strategy_json.keys())
+
     elapsed = round(time.time() - start, 2)
 
+
+
+    print("========== STRATEGIES ==========")
+    print(strategy_json)
+    print(type(strategy_json))
+    print("===============================")
     
     return {
         # "strategy_options": response.content
@@ -43,5 +52,6 @@ def strategy_agent(state):
         # f"Generated {len(strategy_json.get('strategy_options', []))} strategies",
         f"Generated {len(strategy_json.get('strategies', []))} strategies",
         "Strategy Agent finished"
+        
     ]
     }

@@ -25,6 +25,12 @@ def decision_maker(state):
 
     elapsed = round(time.time() - start, 2)
 
+
+    print("========== DECISION ==========")
+    print(decision_json)
+    print(type(decision_json))
+    print("===============================")
+
     return {
         # "final_decision": response.content
         # "final_decision": response

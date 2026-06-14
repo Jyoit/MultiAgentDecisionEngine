@@ -5,6 +5,8 @@ from schemas.request import DecisionRequest
 from services.db_service import save_decision
 from database.db import SessionLocal
 from database.models import Decision
+import json
+from fastapi.responses import StreamingResponse
 
 
 app = FastAPI(
@@ -23,6 +25,21 @@ app.add_middleware(
 
 
 graph = build_graph()
+
+AGENT_NAMES = {
+    "market": "Market Analyst",
+    "risk": "Risk Analyst",
+    "customer": "Customer Agent",
+    "strategy": "Strategy Agent",
+    "decision": "Decision Maker",
+}
+
+
+def sse_event(event_type: str, payload: dict):
+    return (
+        f"event: {event_type}\n"
+        f"data: {json.dumps(payload)}\n\n"
+    )
 
 @app.get("/decisions")
 def get_decisions():
@@ -143,7 +160,9 @@ def run_decision(request: DecisionRequest):
             # result["strategy_options"]["strategies"],
             # result["strategy_options"],
             # result["strategy_options"]["strategy_options"],
-            result["strategy_options"].get("strategies", []),
+            # result["strategy_options"].get("strategies", []),
+            result["strategy_options"].get("strategy_options", []),            
+            
 
         "sources":
             result["market_data"]["research"]["results"],
@@ -172,4 +191,142 @@ def run_decision(request: DecisionRequest):
 
 
     # return result
+
+@app.get("/run-decision-stream")
+def run_decision_stream(query: str):
+
+    def event_generator():
+
+        final_state = {
+            "query": query,
+            "stream_log": [],
+            "risk_loop_count": 0,
+        }
+
+        yield sse_event("workflow_started", {
+            "message": "Workflow started",
+            "query": query
+        })
+
+        # for update in graph.stream(final_state):
+
+        #     for node_name, node_output in update.items():
+
+        #         agent_name = AGENT_NAMES.get(node_name, node_name)
+
+        #         # 1. START EVENT
+        #         yield sse_event("agent_running", {
+        #             "agent": node_name,
+        #             "agent_name": agent_name,
+        #             "message": f"{agent_name} is running..."
+        #         })
+
+        #         final_state.update(node_output)
+
+        #         logs = node_output.get("stream_log", [])
+
+        #         # 2. DONE EVENT
+        #         yield sse_event("agent_done", {
+        #             "agent": node_name,
+        #             "agent_name": agent_name,
+        #             "message": f"{agent_name} completed",
+        #             "logs": logs,
+        #             "output": node_output
+        #         })
+
+
+        for update in graph.stream(final_state):
+
+            for node_name, node_output in update.items():
+
+                agent_name = AGENT_NAMES.get(node_name, node_name)
+
+                print("FINAL STRATEGIES")
+                print(final_state.get("strategy_options"))
+
+                yield sse_event(
+                    "agent_running",
+                    {
+                        "agent": node_name,
+                        "agent_name": agent_name,
+                        "message": f"{agent_name} is running..."
+                    }
+                )
+
+                if isinstance(node_output, dict):
+                    final_state.update(node_output)
+                    logs = node_output.get("stream_log", [])
+                else:
+                    logs = []
+
+                yield sse_event(
+                    "agent_done",
+                    {
+                        "agent": node_name,
+                        "agent_name": agent_name,
+                        "message": f"{agent_name} completed",
+                        "logs": logs,
+                        "output": node_output
+                    }
+                )
+
+        decision = final_state["final_decision"]
+
+        save_decision(
+            query=query,
+            verdict=decision["Final Verdict"],
+            confidence=decision["Confidence Score"],
+            reasoning=decision["Reasoning"],
+        )
+
+        print("========== FINAL STATE ==========")
+        print(final_state.keys())
+
+        print("========== STRATEGY OPTIONS ==========")
+        print(final_state.get("strategy_options"))
+
+        print("TYPE:")
+        print(type(final_state.get("strategy_options")))
+        print("=====================================")
+        print("FINAL STRATEGIES SENT TO FRONTEND")
+        print(
+            final_state["strategy_options"].get(
+                "strategy_options",
+                []
+            )
+        )
+        print("SENDING TO FRONTEND")
+        print(final_state["strategy_options"])
+
+        yield sse_event("workflow_done", {
+            "message": "Final decision ready",
+            "result": {
+                "query": query,
+                "market_summary": final_state["market_data"]["analysis"],
+                "risk_score": final_state["risk_data"]["risk_score"],
+                "customer_sentiment": final_state["customer_data"]["sentiment_score"],
+                "average_rating": final_state["customer_data"]["average_rating"],
+                # "strategies": final_state["strategy_options"].get("strategies", []),
+                "strategies": final_state["strategy_options"].get("strategy_options", []),
+                # "strategies":final_state["strategy_options"]["strategies"],
+                # "strategies": final_state["strategy_options"]["strategy_options"],
+                "agent_times": {
+                    "market_agent": final_state["market_data"]["execution_time"],
+                    "risk_agent": final_state["risk_data"]["execution_time"],
+                    "customer_agent": final_state["customer_data"]["execution_time"],
+                    "strategy_agent": final_state.get("strategy_execution_time", 0),
+                    "decision_agent": final_state.get("decision_execution_time", 0)
+                },
+                "final_decision": decision
+            }
+        })
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive"
+        }
+    )
     

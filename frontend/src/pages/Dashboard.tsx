@@ -1,10 +1,10 @@
 import { useState } from "react";
-import api from "../api/warRoomApi";
+// import api from "../api/warRoomApi";
 import DecisionHistory from "../components/DecisionHistory";
 import DecisionForm
 from "../components/DecisionForm";
-import type { DecisionResponse }
-from "../types/decision";
+// import type { DecisionResponse }
+// from "../types/decision";
 
 import DecisionResult
 from "../components/DecisionResult";
@@ -16,6 +16,12 @@ import KPICards from "../components/KPICards";
 import StrategyCards from "../components/StrategyCards";
 import MarketSummary from "../components/MarketSummary";
 
+import AgentTrace from "../components/AgentTrace";
+import type {
+  AgentEvent,
+  DecisionResponse,
+} from "../types/decision";
+
 export default function Dashboard() {
 
   const [loading, setLoading] =
@@ -26,35 +32,148 @@ export default function Dashboard() {
   const [result, setResult] =
   useState<DecisionResponse | null>(null);
 
-  const runDecision =
-    async (query: string) => {
 
-      setLoading(true);
+  const [agentEvents, setAgentEvents] =
+  useState<AgentEvent[]>([]);
 
-      try {
+  // const runDecision =
+  //   async (query: string) => {
 
-        const response =
-          await api.post(
-            "/run-decision",
-            {
-              query,
-            }
-          );
+  //     setLoading(true);
 
-        setResult(
-          response.data
-        );
+  //     try {
 
-      } catch (error) {
+  //       const response =
+  //         await api.post(
+  //           "/run-decision",
+  //           {
+  //             query,
+  //           }
+  //         );
 
-        console.error(error);
+  //       setResult(
+  //         response.data
+  //       );
 
-      } finally {
+  //     } catch (error) {
 
-        setLoading(false);
+  //       console.error(error);
 
-      }
-    };
+  //     } finally {
+
+  //       setLoading(false);
+
+  //     }
+  //   };
+
+
+
+  const runDecision = async (
+  query: string
+) => {
+
+  setLoading(true);
+
+  setResult(null);
+
+  setAgentEvents([]);
+
+  const source =
+    new EventSource(
+      `http://127.0.0.1:8000/run-decision-stream?query=${encodeURIComponent(query)}`
+    );
+
+  source.addEventListener(
+    "workflow_started",
+    (event: MessageEvent) => {
+
+      const data =
+        JSON.parse(event.data);
+
+      setAgentEvents([
+        {
+          agent: "workflow",
+          agent_name: "Workflow",
+          status: "running",
+          message: data.message,
+        },
+      ]);
+    }
+  );
+
+  source.addEventListener(
+    "agent_running",
+    (event: MessageEvent) => {
+
+      const data =
+        JSON.parse(event.data);
+
+      setAgentEvents((prev) => [
+        ...prev,
+        {
+          agent: data.agent,
+          agent_name:
+            data.agent_name,
+          status: "running",
+          message:
+            data.message,
+        },
+      ]);
+    }
+  );
+
+  source.addEventListener(
+    "agent_done",
+    (event: MessageEvent) => {
+
+      const data =
+        JSON.parse(event.data);
+
+      setAgentEvents((prev) => [
+        ...prev,
+        {
+          agent: data.agent,
+          agent_name:
+            data.agent_name,
+          status: "done",
+          message:
+            data.message,
+          logs: data.logs,
+          output: data.output,
+        },
+      ]);
+    }
+  );
+
+  source.addEventListener(
+    "workflow_done",
+    (event: MessageEvent) => {
+
+      const data =
+        JSON.parse(event.data);
+
+// console.log(
+//       "FINAL RESULT",
+//       data.result
+//     );
+
+      setResult(
+        data.result
+      );
+
+      setLoading(false);
+
+      source.close();
+    }
+  );
+
+  source.onerror = () => {
+
+    setLoading(false);
+
+    source.close();
+  };
+};
 
   return (
     <div className="max-w-4xl mx-auto p-8">
@@ -66,6 +185,12 @@ export default function Dashboard() {
       <DecisionForm
         onSubmit={runDecision}
       />
+
+      <div className="mt-6">
+  <AgentTrace
+    events={agentEvents}
+  />
+</div>
 
       {loading &&
         <LoadingSpinner />
@@ -91,7 +216,10 @@ export default function Dashboard() {
   sentiment={result.customer_sentiment}
   rating={result.average_rating}
   strategyCount={
-    result.strategies?.strategies?.length || 0
+    // result.strategies?.strategies?.length || 0
+    result.strategies?.length || 0
+    // result.strategy_options?.strategies?.length || 0
+    
   }
 />
 
@@ -100,7 +228,8 @@ export default function Dashboard() {
     /> */}
     <StrategyCards
   strategies={
-    result.strategies?.strategies || []
+    // result.strategies?.strategies || []
+    result.strategies || []
   }
 />
     

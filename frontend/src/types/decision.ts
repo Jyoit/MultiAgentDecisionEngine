@@ -51,10 +51,10 @@ export interface DecisionResponse {
 
   average_rating: number;
 
-  // strategies: Strategy[];
-  strategies: {
   strategies: Strategy[];
-};
+//   strategies: {
+//   strategies: Strategy[];
+// };
 
 agent_times: {
     market_agent: number;
@@ -82,4 +82,26 @@ export interface Decision {
   verdict: string;
   confidence: number;
   reasoning: string;
+}
+
+
+export type AgentStatus =
+  | "idle"
+  | "running"
+  | "done"
+  | "error";
+
+export interface AgentEvent {
+  // agent: string;
+  // agent_name: string;
+  // status: AgentStatus;
+  // message: string;
+  // logs?: string[];
+
+  agent: string;
+  agent_name: string;
+  status: string;
+  message: string;
+  logs?: string[];
+  output?: any;
 }
