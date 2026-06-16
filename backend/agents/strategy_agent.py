@@ -28,6 +28,11 @@ def strategy_agent(state):
     response = invoke_llm(prompt)
     strategy_json = parse_llm_json(response)
 
+    strategies = strategy_json.get(
+        "strategies",
+        strategy_json.get("strategy_options", [])
+    )
+
     print("STRATEGY JSON KEYS:")
     print(strategy_json.keys())
 
@@ -50,7 +55,8 @@ def strategy_agent(state):
     "stream_log": state.get("stream_log", []) + [
         "Strategy Agent started",
         # f"Generated {len(strategy_json.get('strategy_options', []))} strategies",
-        f"Generated {len(strategy_json.get('strategies', []))} strategies",
+        # f"Generated {len(strategy_json.get('strategies', []))} strategies",
+        f"Generated {len(strategies)} strategies",
         "Strategy Agent finished"
         
     ]

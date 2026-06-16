@@ -4,6 +4,7 @@ from services.llm_service import invoke_llm
 from prompts.decision_prompt import DECISION_PROMPT
 from utils.json_parser import parse_llm_json
 import time
+from utils.response_formatter import format_decision
 
 
 def decision_maker(state):
@@ -23,6 +24,10 @@ def decision_maker(state):
 
     decision_json = parse_llm_json(response)
 
+    formatted_output = format_decision(
+        decision_json
+    )
+
     elapsed = round(time.time() - start, 2)
 
 
@@ -36,6 +41,7 @@ def decision_maker(state):
         # "final_decision": response
         # "final_decision": decision_json
         "final_decision": decision_json,
+        "formatted_decision": formatted_output,
         "decision_execution_time": elapsed,
 
     "stream_log": state.get("stream_log", []) + [
