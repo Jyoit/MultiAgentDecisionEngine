@@ -347,19 +347,19 @@ export default function AgentTrace({ events }: Props) {
               <div>
                 {event.status === "running" && (
                   <span className="px-3 py-1 rounded bg-blue-100 text-blue-700 text-sm">
-                    🔄 Running
+                    🔵 Running
                   </span>
                 )}
 
                 {event.status === "done" && (
                   <span className="px-3 py-1 rounded bg-green-100 text-green-700 text-sm">
-                    ✅ Done
+                    🟢 Completed
                   </span>
                 )}
 
                 {event.status === "idle" && (
                   <span className="px-3 py-1 rounded bg-gray-100 text-gray-600 text-sm">
-                    ⏳ Waiting
+                    ⚪ Waiting
                   </span>
                 )}
               </div>

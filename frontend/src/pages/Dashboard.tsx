@@ -194,100 +194,241 @@ const currentAgent =
   };
 };
 
-  return (
-    <div className="max-w-4xl mx-auto p-8">
+  // return (
+  //   <div className="max-w-4xl mx-auto p-8">
 
-      <h1 className="text-4xl mb-6">
+  //     <h1 className="text-4xl mb-6">
+  //       AI War Room
+  //     </h1>
+
+  //     <DecisionForm
+  //       onSubmit={runDecision}
+  //     />
+
+  //     {/* <div className="mt-6">
+  // <AgentTrace
+  //   events={agentEvents}
+  //   />
+  // </div> */}
+  // <WorkflowGraph
+  //   currentAgent={currentAgent}
+  //   completedAgents={completedAgents}
+  // />
+
+  // <div className="mt-6">
+  //   <AgentTrace
+  //     events={agentEvents}
+  //   />
+  // </div>
+
+  //       {loading &&
+  //         <LoadingSpinner />
+  //       }
+
+  //       {result &&
+  //         <DecisionResult
+  //           data={result}
+  //         />
+  //       }
+
+  //       {result && (
+  //   <>
+  //     {/* <KPICards
+  //       riskScore={result.risk_score}
+  //       sentiment={result.customer_sentiment}
+  //       rating={result.average_rating}
+  //       strategyCount={result.strategies.length}
+  //     />
+  //     */}
+  //     <KPICards
+  //   riskScore={result.risk_score}
+  //   sentiment={result.customer_sentiment}
+  //   rating={result.average_rating}
+  //   strategyCount={
+  //     // result.strategies?.strategies?.length || 0
+  //     result.strategies?.length || 0
+  //     // result.strategy_options?.strategies?.length || 0
+      
+  //   }
+  // />
+
+  //     {/* <StrategyCards
+  //       strategies={result.strategies}
+  //     /> */}
+  //     <StrategyCards
+  //   strategies={
+  //     // result.strategies?.strategies || []
+  //     result.strategies || []
+  //   }
+  // />
+      
+
+
+  //     <MarketSummary
+  //       summary={result.market_summary}
+  //     />
+
+  // <div className="mt-6 p-4 border rounded">
+  //       <h3 className="text-xl font-bold mb-2">
+  //         Agent Performance
+  //       </h3>
+
+  //       <p>Market Agent: {result.agent_times.market_agent}s</p>
+  //       <p>Risk Agent: {result.agent_times.risk_agent}s</p>
+  //       <p>Customer Agent: {result.agent_times.customer_agent}s</p>
+  //       <p>Strategy Agent: {result.agent_times.strategy_agent}s</p>
+  //       <p>Decision Agent: {result.agent_times.decision_agent}s</p>
+  //     </div>
+
+
+      
+
+  //   </>
+  // )}
+
+  //       <DecisionHistory />
+
+  //     </div>
+  //   );
+
+
+
+  return (
+  <div className="min-h-screen bg-gray-100">
+
+    {/* HEADER */}
+    <div className="bg-white shadow px-8 py-4">
+      <h1 className="text-3xl font-bold">
         AI War Room
       </h1>
+    </div>
 
-      <DecisionForm
-        onSubmit={runDecision}
-      />
+    {/* MAIN LAYOUT */}
+    <div className="grid grid-cols-12 gap-6 p-6">
 
-      {/* <div className="mt-6">
-  <AgentTrace
-    events={agentEvents}
-  />
-</div> */}
-<WorkflowGraph
-  currentAgent={currentAgent}
-  completedAgents={completedAgents}
-/>
+      {/* ===================================== */}
+      {/* LEFT PANEL */}
+      {/* ===================================== */}
+      <div className="col-span-2 space-y-4">
 
-<div className="mt-6">
-  <AgentTrace
-    events={agentEvents}
-  />
-</div>
-
-      {loading &&
-        <LoadingSpinner />
-      }
-
-      {result &&
-        <DecisionResult
-          data={result}
+        <WorkflowGraph
+          currentAgent={currentAgent}
+          completedAgents={completedAgents}
         />
-      }
 
-      {result && (
-  <>
-    {/* <KPICards
-      riskScore={result.risk_score}
-      sentiment={result.customer_sentiment}
-      rating={result.average_rating}
-      strategyCount={result.strategies.length}
-    />
-     */}
-    <KPICards
-  riskScore={result.risk_score}
-  sentiment={result.customer_sentiment}
-  rating={result.average_rating}
-  strategyCount={
-    // result.strategies?.strategies?.length || 0
-    result.strategies?.length || 0
-    // result.strategy_options?.strategies?.length || 0
-    
-  }
-/>
+        {result && (
+          <KPICards
+            riskScore={result.risk_score}
+            sentiment={result.customer_sentiment}
+            rating={result.average_rating}
+            strategyCount={
+              result.strategies?.length || 0
+            }
+          />
+        )}
 
-    {/* <StrategyCards
-      strategies={result.strategies}
-    /> */}
-    <StrategyCards
-  strategies={
-    // result.strategies?.strategies || []
-    result.strategies || []
-  }
-/>
-    
+      </div>
 
+      {/* ===================================== */}
+      {/* CENTER PANEL */}
+      {/* ===================================== */}
+      <div className="col-span-7">
 
-    <MarketSummary
-      summary={result.market_summary}
-    />
+        <DecisionForm
+          onSubmit={runDecision}
+        />
 
- <div className="mt-6 p-4 border rounded">
-      <h3 className="text-xl font-bold mb-2">
-        Agent Performance
-      </h3>
+        {loading && (
+          <LoadingSpinner />
+        )}
 
-      <p>Market Agent: {result.agent_times.market_agent}s</p>
-      <p>Risk Agent: {result.agent_times.risk_agent}s</p>
-      <p>Customer Agent: {result.agent_times.customer_agent}s</p>
-      <p>Strategy Agent: {result.agent_times.strategy_agent}s</p>
-      <p>Decision Agent: {result.agent_times.decision_agent}s</p>
+        {result && (
+          <DecisionResult
+            data={result}
+          />
+        )}
+
+        {result && (
+          <>
+            <StrategyCards
+              strategies={
+                result.strategies || []
+              }
+            />
+
+            <MarketSummary
+              summary={
+                result.market_summary
+              }
+            />
+
+            <div className="mt-6 bg-white p-4 rounded-xl shadow">
+              <h3 className="font-bold text-lg mb-3">
+                Agent Performance
+              </h3>
+
+              <div className="space-y-2">
+
+                <p>
+                  Market Agent:
+                  {" "}
+                  {result.agent_times.market_agent}s
+                </p>
+
+                <p>
+                  Risk Agent:
+                  {" "}
+                  {result.agent_times.risk_agent}s
+                </p>
+
+                <p>
+                  Customer Agent:
+                  {" "}
+                  {result.agent_times.customer_agent}s
+                </p>
+
+                <p>
+                  Strategy Agent:
+                  {" "}
+                  {result.agent_times.strategy_agent}s
+                </p>
+
+                <p>
+                  Decision Agent:
+                  {" "}
+                  {result.agent_times.decision_agent}s
+                </p>
+
+              </div>
+            </div>
+          </>
+        )}
+
+      </div>
+
+      {/* ===================================== */}
+      {/* RIGHT PANEL */}
+      {/* ===================================== */}
+      <div className="col-span-3 space-y-4">
+
+        <div className="bg-white rounded-xl shadow p-4">
+
+          <h2 className="font-bold text-lg mb-4">
+            Live Agent Workflow
+          </h2>
+
+          <AgentTrace
+            events={agentEvents}
+          />
+
+        </div>
+
+        <DecisionHistory />
+
+      </div>
+
     </div>
 
-
-    
-
-  </>
-)}
-
-      <DecisionHistory />
-
-    </div>
-  );
-}
+  </div>
+);
+  }

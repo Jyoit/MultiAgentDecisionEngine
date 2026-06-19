@@ -58,7 +58,7 @@ export default function DecisionResult({
 
   return (
     <div className="mt-6 bg-white p-6 rounded-xl shadow">
-<details className="mt-6 bg-gray-50 rounded-xl p-4">
+{/* <details className="mt-6 bg-gray-50 rounded-xl p-4">
   <summary className="cursor-pointer font-semibold text-lg">
     View Multi-Agent Workflow
   </summary>
@@ -73,18 +73,27 @@ export default function DecisionResult({
       </div>
     ))}
   </div>
-</details>
-      <h2 className="text-2xl font-bold mb-4">
+</details> */}
+      {/* <h2 className="text-2xl font-bold mb-4">
         Final Verdict
-      </h2>
+      </h2> */}
 
-      <h3 className="text-xl font-semibold">
+      <h2 className="text-xl font-semibold">
         {
           data.final_decision[
             "Final Verdict"
           ]
         }
-      </h3>
+      </h2>
+
+      
+
+      <p className="mt-4">
+        {
+          data.final_decision
+            .Reasoning
+        }
+      </p>
 
       <p className="mt-2">
         Confidence:
@@ -95,13 +104,6 @@ export default function DecisionResult({
           ]
         }
         %
-      </p>
-
-      <p className="mt-4">
-        {
-          data.final_decision
-            .Reasoning
-        }
       </p>
 
     </div>
