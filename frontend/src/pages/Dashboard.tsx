@@ -299,8 +299,10 @@ const currentAgent =
     {/* HEADER */}
     <div className="bg-white shadow px-8 py-4">
       <h1 className="text-3xl font-bold">
-        AI War Room
-      </h1>
+        AI War Room 
+      </h1> <h2 className="text-sm text-gray-500">
+        Executive Decision Intelligence Platform
+      </h2>
     </div>
 
     {/* MAIN LAYOUT */}
@@ -356,13 +358,38 @@ const currentAgent =
               }
             />
 
-            <MarketSummary
+            {/* <MarketSummary
               summary={
                 result.market_summary
               }
-            />
+            /> */}
 
-            <div className="mt-6 bg-white p-4 rounded-xl shadow">
+            {/* <details className="mt-6 bg-white rounded-xl shadow"> */}
+            <details className="mt-6
+  bg-white
+  rounded-xl
+  shadow
+  overflow-hidden">
+
+  {/* <summary className="cursor-pointer p-4 font-semibold text-lg border-b"> */}
+  <summary className=" cursor-pointer
+    p-4
+    font-semibold
+    text-lg
+    bg-gray-50
+    hover:bg-gray-100">
+    Market Intelligence
+  </summary>
+
+  <div className="p-4">
+    <MarketSummary
+      summary={result.market_summary}
+    />
+  </div>
+
+</details>
+
+            {/* <div className="mt-6 bg-white p-4 rounded-xl shadow">
               <h3 className="font-bold text-lg mb-3">
                 Agent Performance
               </h3>
@@ -399,8 +426,45 @@ const currentAgent =
                   {result.agent_times.decision_agent}s
                 </p>
 
-              </div>
-            </div>
+              </div> 
+            </div>*/}
+
+            <details className="mt-6 bg-white rounded-xl shadow">
+
+  <summary className="cursor-pointer p-4 font-semibold">
+     Agent Performance
+  </summary>
+
+  <div className="p-4">
+
+    <p>
+      Market Agent:
+      {result.agent_times.market_agent}s
+    </p>
+
+    <p>
+      Risk Agent:
+      {result.agent_times.risk_agent}s
+    </p>
+
+    <p>
+      Customer Agent:
+      {result.agent_times.customer_agent}s
+    </p>
+
+    <p>
+      Strategy Agent:
+      {result.agent_times.strategy_agent}s
+    </p>
+
+    <p>
+      Decision Agent:
+      {result.agent_times.decision_agent}s
+    </p>
+
+  </div>
+
+</details>
           </>
         )}
 
@@ -414,7 +478,7 @@ const currentAgent =
         <div className="bg-white rounded-xl shadow p-4">
 
           <h2 className="font-bold text-lg mb-4">
-            Live Agent Workflow
+            Agent Workflow
           </h2>
 
           <AgentTrace

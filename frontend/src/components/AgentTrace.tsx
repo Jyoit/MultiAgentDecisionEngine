@@ -316,7 +316,7 @@ export default function AgentTrace({ events }: Props) {
   return (
     <div className="border rounded-xl p-5 bg-white shadow-sm">
       <h2 className="font-bold text-xl mb-4">
-        Live Agent Workflow
+        🟢 Live Agent Workflow
       </h2>
 
       <div className="space-y-3">
