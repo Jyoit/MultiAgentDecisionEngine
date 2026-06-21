@@ -33,11 +33,65 @@ export interface Strategy {
 }
 
 export interface FinalDecision {
+  // "Final Verdict": string;
+  // "Confidence Score": number;
+  // Reasoning: string;
+  // "Key Risks": string[];
+  // "Recommended Actions": string[];
+
+
+  // "Final Verdict": string;
+
+  // "Confidence Score": number;
+
+  // "Executive Summary": string;
+
+  // "Market Insights": string[];
+
+  // "Customer Insights": string[];
+
+  // "Competitor Insights": string[];
+
+  // "Key Risks": string[];
+
+  // "Recommended Actions": string[];
+
+  // "Expected Outcome": string;
+
+  // "Why Not The Others": string;
+
+
+
+  
   "Final Verdict": string;
+
   "Confidence Score": number;
-  Reasoning: string;
-  "Key Risks": string[];
+
+  "Executive Summary": string;
+
+  "Business Impact": {
+    "Revenue Impact": string;
+    "Risk Level": string;
+    "Customer Impact": string;
+  };
+
+  "Why This Decision": string[];
+
   "Recommended Actions": string[];
+
+  "Key Risks": string[];
+
+  "Alternative Strategies": {
+    title: string;
+    confidence: number;
+  }[];
+
+  "Reasoning": string;
+
+  "Expected Outcome": string;
+
+  "Why Not The Others": string;
+
 }
 
 export interface DecisionResponse {
@@ -66,14 +120,14 @@ agent_times: {
 
   workflow: string[];
 
-  // final_decision: FinalDecision;
-  final_decision: {
-    "Final Verdict": string;
-    "Confidence Score": number;
-    Reasoning: string;
-    "Key Risks": string[];
-    "Recommended Actions": string[];
-  };
+  final_decision: FinalDecision;
+  // final_decision: {
+  //   "Final Verdict": string;
+  //   "Confidence Score": number;
+  //   Reasoning: string;
+  //   "Key Risks": string[];
+  //   "Recommended Actions": string[];
+  // };
 }
 
 export interface Decision {
