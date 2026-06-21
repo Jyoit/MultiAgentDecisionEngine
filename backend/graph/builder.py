@@ -24,20 +24,69 @@ from agents.decision_maker import decision_maker
 #     return "customer"
 
 
+# def route_after_risk(state):
+
+#     risk_score = 0
+
+#     # SAFE extraction from nested structure
+#     if state.get("risk_data"):
+#         risk_score = state["risk_data"].get("risk_score", 0)
+
+#     retry_count = state.get("retry_count", 0)
+
+#     print("RISK SCORE DEBUG:", risk_score)
+#     print("RETRY COUNT:", retry_count)
+
+#     if risk_score > 75 and retry_count < 1:
+#         return "market_retry"
+
+    # return "customer"
+
+
 def route_after_risk(state):
 
     risk_score = 0
 
-    # SAFE extraction from nested structure
     if state.get("risk_data"):
-        risk_score = state["risk_data"].get("risk_score", 0)
+        risk_score = state["risk_data"].get(
+            "risk_score",
+            0
+        )
 
-    retry_count = state.get("retry_count", 0)
+    risk_loop_count = state.get(
+        "risk_loop_count",
+        0
+    )
 
-    print("RISK SCORE DEBUG:", risk_score)
-    print("RETRY COUNT:", retry_count)
+    print(
+        "RISK SCORE DEBUG:",
+        risk_score
+    )
 
-    if risk_score > 75 and retry_count < 1:
+    print(
+        "RISK LOOP COUNT:",
+        risk_loop_count
+    )
+
+    if (
+        risk_score > 75
+        and risk_loop_count < 1
+    ):
+
+        state["risk_loop_count"] = (
+            risk_loop_count + 1
+        )
+
+        state["stream_log"] = (
+            state.get(
+                "stream_log",
+                []
+            )
+            + [
+                "Risk loop triggered: re-running market analysis"
+            ]
+        )
+
         return "market_retry"
 
     return "customer"
@@ -90,7 +139,12 @@ def build_graph():
 
     workflow.add_conditional_edges(
     "risk",
-    route_after_risk
+    # route_after_risk
+    route_after_risk,
+    {
+        "market_retry": "market_retry",
+        "customer": "customer",
+    }
     )
 
     workflow.add_edge(
