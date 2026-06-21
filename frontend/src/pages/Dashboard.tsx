@@ -42,21 +42,47 @@ export default function Dashboard() {
   const [agentEvents, setAgentEvents] =
   useState<AgentEvent[]>([]);
 
+
+  const normalizeAgent = (agent: string) =>
+  agent === "market_retry"
+    ? "market"
+    : agent;
+
+  // const completedAgents =
+  // agentEvents
+  //   .filter(
+  //     (e) => e.status === "done"
+  //   )
+  //   .map(
+  //     (e) => e.agent
+  //   );
+
+
   const completedAgents =
   agentEvents
     .filter(
       (e) => e.status === "done"
     )
     .map(
-      (e) => e.agent
+      (e) => normalizeAgent(e.agent)
     );
 
+// const currentAgent =
+//   [...agentEvents]
+//     .reverse()
+//     .find(
+//       (e) => e.status === "running"
+//     )?.agent;
+
+
 const currentAgent =
-  [...agentEvents]
-    .reverse()
-    .find(
-      (e) => e.status === "running"
-    )?.agent;
+  normalizeAgent(
+    [...agentEvents]
+      .reverse()
+      .find(
+        (e) => e.status === "running"
+      )?.agent || ""
+  );
 
   // const runDecision =
   //   async (query: string) => {

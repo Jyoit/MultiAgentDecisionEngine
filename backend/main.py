@@ -28,6 +28,7 @@ graph = build_graph()
 
 AGENT_NAMES = {
     "market": "Market Analyst",
+    "market_retry": "Market Analyst (Retry)",
     "risk": "Risk Analyst",
     "customer": "Customer Agent",
     "strategy": "Strategy Agent",
@@ -241,8 +242,8 @@ def run_decision_stream(query: str):
 
                 agent_name = AGENT_NAMES.get(node_name, node_name)
 
-                print("FINAL STRATEGIES")
-                print(final_state.get("strategy_options"))
+                # print("FINAL STRATEGIES")
+                # print(final_state.get("strategy_options"))
 
                 yield sse_event(
                     "agent_running",
@@ -282,21 +283,21 @@ def run_decision_stream(query: str):
         print("========== FINAL STATE ==========")
         print(final_state.keys())
 
-        print("========== STRATEGY OPTIONS ==========")
-        print(final_state.get("strategy_options"))
+        # print("========== STRATEGY OPTIONS ==========")
+        # print(final_state.get("strategy_options"))
 
-        print("TYPE:")
-        print(type(final_state.get("strategy_options")))
+        # print("TYPE:")
+        # print(type(final_state.get("strategy_options")))
         print("=====================================")
-        print("FINAL STRATEGIES SENT TO FRONTEND")
-        print(
-            final_state["strategy_options"].get(
-                "strategy_options",
-                []
-            )
-        )
-        print("SENDING TO FRONTEND")
-        print(final_state["strategy_options"])
+        # print("FINAL STRATEGIES SENT TO FRONTEND")
+        # print(
+        #     final_state["strategy_options"].get(
+        #         "strategy_options",
+        #         []
+        #     )
+        # )
+        # print("SENDING TO FRONTEND")
+        # print(final_state["strategy_options"])
 
         yield sse_event("workflow_done", {
             "message": "Final decision ready",
@@ -306,8 +307,9 @@ def run_decision_stream(query: str):
                 "risk_score": final_state["risk_data"]["risk_score"],
                 "customer_sentiment": final_state["customer_data"]["sentiment_score"],
                 "average_rating": final_state["customer_data"]["average_rating"],
-                # "strategies": final_state["strategy_options"].get("strategies", []),
-                "strategies": final_state["strategy_options"].get("strategy_options", []),
+                # "strategies": final_state["strategy_options"].get("strategies", []),s
+                "strategies": final_state["strategy_options"].get("strategies", []),
+                # "strategies": final_state["strategy_options"].get("strategy_options", []),
                 # "strategies":final_state["strategy_options"]["strategies"],
                 # "strategies": final_state["strategy_options"]["strategy_options"],
                 "agent_times": {
