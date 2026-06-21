@@ -122,7 +122,14 @@ import { useEffect, useState } from "react";
 import { getDecisionHistory } from "../api/warRoomApi";
 import type { Decision } from "../types/decision";
 
-export default function DecisionHistory() {
+interface Props {
+  refreshKey: number;
+}
+
+// export default function DecisionHistory() {
+export default function DecisionHistory({
+  refreshKey,
+}: Props) {
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -145,7 +152,8 @@ export default function DecisionHistory() {
     };
 
     loadHistory();
-  }, []);
+  // }, []);
+  }, [refreshKey]);
 
   if (loading) {
     return (

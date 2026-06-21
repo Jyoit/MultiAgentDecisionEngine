@@ -35,6 +35,9 @@ export default function Dashboard() {
   const [result, setResult] =
   useState<DecisionResponse | null>(null);
 
+  const [historyRefreshKey, setHistoryRefreshKey] =
+  useState(0);
+
 
   const [agentEvents, setAgentEvents] =
   useState<AgentEvent[]>([]);
@@ -179,6 +182,10 @@ const currentAgent =
       setResult(
         data.result
       );
+
+      setHistoryRefreshKey(
+  (prev) => prev + 1
+);
 
       setLoading(false);
 
@@ -487,7 +494,10 @@ const currentAgent =
 
         </div>
 
-        <DecisionHistory />
+        {/* <DecisionHistory /> */}
+        <DecisionHistory
+  refreshKey={historyRefreshKey}
+/>
 
       </div>
 
