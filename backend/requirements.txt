@@ -2,7 +2,7 @@ fastapi
 uvicorn
 langgraph
 langchain
-langchain-groq
+langchain-mistralai
 pandas
 textblob
 tavily-python
@@ -10,3 +10,5 @@ python-dotenv
 pydantic
 reportlab
 python-multipart
+sqlalchemy
+json-repair
